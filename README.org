@@ -1,0 +1,43 @@
+* orgTree
+python script to display the tree structure of org mode files.
+** Dependencies
+- anytree
+- PyOrgMode
+** Help
+
+usage: orgTree.py [-h] [-v] [-n | -l X] org image
+
+Creates an image of the tree structure of an org file
+
+positional arguments:
+  org                   the input org file
+  image                 the output image
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --verbose
+  -n, --number-headings
+                        Don't include heading text in output, number them on
+                        discovery instead. Cannot use in conjunction with -l.
+  -l X, --len-heading X
+                        Limit the number of characters kept from org file
+                        headings to 'X'. 'X' = 0 will keep all characters.
+                        Cannot use in conjunction with -n.
+** Example
+=./orgTree org_tree.org org_tree_tree.png=
+
+CL output:
+
+Org File Root
+└── Tree visualisation for org-mode files
+    ├── Itch
+    ├── Scratch
+    ├── Results
+    │   ├── CLI output:
+    │   ├── Graphical output:
+    │   └── Using the =-n= flag:
+    └── Notes
+
+Image output:
+
+[[org_tree_tree.png]]
