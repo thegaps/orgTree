@@ -14,6 +14,12 @@
 from PyOrgMode import PyOrgMode
 from anytree import Node, RenderTree
 import argparse as ap
+import string
+
+# allow most printable characters
+allowedChar = string.printable
+# except these ones...
+allowedChar = allowedChar.translate(None, """\')"_""")
 
 # Handle arguments
 parser = ap.ArgumentParser(description="Creates an image of the tree structure of an org file")
@@ -59,6 +65,8 @@ def nodeHead(node):
     except:
         if v: print("heading is zero-length (I think)")
         heading = "<>" # use some symbols to stand for 'empty'
+    # Limit heading to safe characters, so RenderTreeGraph does not bork
+    heading = ''.join(e for e in heading if e in allowedChar)
     if args.number_headings: heading = nodeHead.counter
     if v: print(nodeHead.counter, heading)
     return heading
